@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Framboesa de Ouro</title>
+
+<link rel="icon" type="image/x-icon" th:href="@{/image/favicon.ico}">
+<link rel="stylesheet"
+	th:href="@{webjars/bootstrap/5.1.3/css/bootstrap.min.css}" />
+<link rel="stylesheet" th:href="@{/css/index.css}" />
+</head>
+<body>
+	<div class="col-lg-8 mx-auto p-3 py-md-5">
+		<header class="d-flex align-items-center pb-3 mb-5 border-bottom">
+			<span class="fs-4">Spring Boot Exemplo - Framboesa de Ouro</span>
+		</header>
+
+		<main>
+			<h1>Sobre o Projeto</h1>
+			<p class="fs-5 col-md-8">Este projeto visa listar os filmes que
+				foram indicados ao prêmio da idústria de cinema chamado Framboesa de
+				Ouro, durante os anos de 1980 a 2019. Também é possível verificar
+				quais produtores ganharam esse prêmio. Além de permitir realizar
+				operações sobre a base de filmes.</p>
+
+			<div class="mb-5">
+				<a href="https://pt.wikipedia.org/wiki/Framboesa_de_Ouro"
+					target="_blank" title="Saiba mais na wikipédia"
+					class="btn btn-primary btn-lg px-4">Saiba mais</a>
+			</div>
+
+			<hr class="col-3 col-md-2 mb-5">
+
+			<div class="row g-5">
+				<div class="col-md-6">
+					<h2>Informações do projeto</h2>
+					<p>No link a seguir consta o manual de configuração,
+						informações e operação do sistema.</p>
+					<ul class="icon-list">
+						<li><a href="/manual" rel="noopener" target="_blank"
+							title="Manual do sistema">Manual do sistema</a></li>
+					</ul>
+				</div>
+
+				<div class="col-md-6">
+					<h2>Links</h2>
+					<p>Links de operações disponíveis:</p>
+					<ul class="icon-list">
+						<li><a href="/filmes" rel="noopener" target="_blank"
+							title="Listagem de filmes">Listagem e operações de filmes</a></li>
+						<li><a href="/vencedores" rel="noopener" target="_blank"
+							title="Listagem de vencedores">Listagem de vencedores</a></li>
+					</ul>
+				</div>
+			</div>
+		</main>
+		<footer class="pt-5 my-5 text-muted border-top">
+			Criado por Alexandre &middot; 2022 -
+			<script>
+				document.write(new Date().getFullYear())
+			</script>
+		</footer>
+	</div>
+	<script type="text/javascript"
+		th:src="@{webjars/bootstrap/5.1.3/js/bootstrap.min.js}"></script>
+</body>
+</html>

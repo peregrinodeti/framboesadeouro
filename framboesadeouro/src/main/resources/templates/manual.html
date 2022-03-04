@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Manual</title>
+
+<link rel="icon" type="image/x-icon" th:href="@{/image/favicon.ico}">
+<link rel="stylesheet"
+	th:href="@{webjars/bootstrap/5.1.3/css/bootstrap.min.css}" />
+<link rel="stylesheet" th:href="@{/css/index.css}" />
+</head>
+
+<body>
+	<div class="col-lg-8 mx-auto p-3 py-md-5">
+		<header class="d-flex align-items-center pb-3 mb-5 border-bottom">
+			<span class="fs-4">Manual de operação e configuração do
+				sistema</span> &nbsp;&nbsp;&nbsp; <a href="/" title="Página inicial"><button
+					class="btn btn-primary btn-lg" type="button">Voltar</button></a>
+		</header>
+		<main>
+			<h4 id="indice">Índice</h4>
+			<p>Seções deste manual:</p>
+			<ul>
+				<li><a href="#configurando">Configurando o sistema</a>;</li>
+				<li><a href="#formato">Formato do arquivo CSV para
+						Importação</a>;</li>
+				<li><a href="#iniciando">Iniciando a aplicação</a>;</li>
+				<li><a href="#listagem">Listagem e operações de filmes</a>;</li>
+				<li><a href="#vencedores">Listagem de vencedores</a>;</li>
+				<li><a href="#organizacao">Organização interna do projeto</a>;</li>
+				<li><a href="#tecnologias">Tecnologias Utilizadas</a>;</li>
+				<li><a href="#testes">Testes</a>.</li>
+			</ul>
+			<hr class="col-3 col-md-2 mb-5">
+
+
+			<h4 id="configurando">Configurando o sistema</h4>
+			<p>O sistema em si não necessita de maiores configurações.
+				Entretanto para realizar a carga inicial de informações no banco de
+				dados, é necessário importar os dados de um arquivo CSV. Para isso é
+				necessário configurar uma variável de ambiente conforme o seu
+				sistema operacional. Assim quando a aplicação terminar de subir, os
+				dados para consulta estarão disponíveis.</p>
+			<p>Crie a seguinte variável de ambiente conforme descrito a
+				seguir:</p>
+			<p>
+				<b>ARQUIVO_CSV</b>: Essa variável de ambiente "ARQUIVO_CSV" indica o
+				diretório e o nome da fonte de dados em formato ".CSV", arquivo esse
+				que será importada pelo sistema. O diretório deve ser informada
+				junto com o nome do arquivo, como, por exemplo, no caso do Windows
+				seria: "C:/csv/movielist.csv". Caso essa variável de ambiente não
+				seja informada, o sistema irá incializar sem realizar a importação
+				de dados.
+			</p>
+
+			<hr class="col-3 col-md-2 mb-5">
+
+			<h4 id="formato">Formato do arquivo CSV para Importação</h4>
+			<p class="col-md-8">O arquivo para importação têm a seguinte
+				configuração. Na sua primeira linha consta as seguintes colunas
+				(dados separados com ";"), compondo as informações de um filme:</p>
+			<ul>
+				<li><b>year</b>: Formato numérico. Valor obrigatório;</li>
+				<li><b>title</b>: Formato string. Valor obrigatório;</li>
+				<li><b>studios</b>: Formato string. Valor obrigatório;</li>
+				<li><b>producers</b>: Formato string, com nomes separados por
+					vírgula e a palavra " and ". Valor obrigatório;</li>
+				<li><b>winner</b>: Formato string, com valores "yes", "no" ou
+					"". Campo opcional.</li>
+			</ul>
+			<p>Na sua segunda linha em diante consta as informações dos
+				filmes, conforme o exemplo a seguir:</p>
+			<pre>
+				year;title;studios;producers;winner
+				1980;Can't Stop the Music;Associated Film Distribution;Allan Carr;yes
+				1980;Cruising;Lorimar Productions, United Artists;Jerry Weintraub;
+				1980;The Formula;MGM, United Artists;Steve Shagan;
+				1980;Friday the 13th;Paramount Pictures;Sean S. Cunningham;
+				1980;The Nude Bomb;Universal Studios;Jennings Lang;
+				1980;The Jazz Singer;Associated Film Distribution;Jerry Leider;
+				1980;Raise the Titanic;Associated Film Distribution;William Frye;
+				1980;Saturn 3;Associated Film Distribution;Stanley Donen;
+				1980;Windows;United Artists;Mike Lobell;
+				1980;Xanadu;Universal Studios;Lawrence Gordon;
+				1981;Mommie Dearest;Paramount Pictures;Frank Yablans;yes
+				1981;Endless Love;Universal Studios, PolyGram;Dyson Lovell;
+				1981;Heaven's Gate;United Artists;Joann Carelli;
+				1981;The Legend of the Lone Ranger;Universal Studios, Associated Film Distribution;Walter Coblenz;
+				1981;Tarzan, the Ape Man;MGM, United Artists;John Derek;
+				2019;Cats;Universal Pictures;Debra Hayward, Tim Bevan, Eric Fellner, and Tom Hooper;yes
+				2019;The Fanatic;Quiver Distribution;Daniel Grodnik, Oscar Generale, and Bill Kenwright;
+				2019;The Haunting of Sharon Tate;Saban Films;Lucas Jarach, Daniel Farrands, and Eric Brenner;
+				2019;A Madea Family Funeral;Lionsgate;Ozzie Areu, Will Areu, and Mark E. Swinton;
+				2019;Rambo: Last Blood;Lionsgate;Avi Lerner, Kevin King Templeton, Yariv Lerner, and Les Weldon;
+			</pre>
+			<hr class="col-3 col-md-2 mb-5">
+
+			<h4 id="iniciando">Iniciando a aplicação</h4>
+			<p>
+				Caso você execute a aplicação via uma IDE como, por exemplo, o
+				Eclipse. Procure a classe <b>FramboesaDeOuroApplication</b> que está
+				no pacote <b>com.premio.cinema</b>, e App ou Java Application. Via o
+				menu na IDE <b>Run -> Run As -> Java Application</b> ou <b>Spring
+					Boot App</b>.
+			</p>
+
+			<p>Você também pode tentar compilar a aplicação via Maven. Para
+				tanto acesse via terminal (shell) do seu sistema operacional a pasta
+				do projeto que contêm o arquivo <b>mvnw.cmd</b> e digite os seguintes
+				comandos:</p>
+			<ul>
+				<li>mvn clean package spring-boot:repackage</li>
+				<li>java -jar target/framboesadeouro-0.0.1-SNAPSHOT.jar</li>
+			</ul>
+			<p>
+				O primeiro comando monta a aplicação, e o segundo inicia a mesma.
+				Ocorrendo tudo bem, sem nenhum erro, a aplicação já estará
+				disponível via navegador para isso basta digitar o endereço: <b>http://localhost:8080/</b>,
+				para ter acesso a aplicação.
+			</p>
+			<p>
+				Observação caso ocorra algum problema na compilação do tipo <b>Fatal
+					error compiling: error: invalid target release: 17</b>, verifique se a
+				versão instalada do Java é a mesma da versão utilizada pelo Maven
+				para compilar o projeto. Para tanto digite os comandos na shell <b>java
+					-version</b> e depois <b>mvn -version</b>. Nas saídas que se
+				apresentarem deve constar a versão 17 do Java. Caso haja diferença,
+				verifique se a variável de ambiente do seu sistema operacional como,
+				por exemplo, JAVA_HOME, ou outra similar está apontado para o
+				diretório de instalação da versão 17 do Java.
+			</p>
+
+			<hr class="col-3 col-md-2 mb-5">
+
+
+			<h4 id="listagem">Listagem e operações de filmes</h4>
+			<p>
+				A primitiva <b>filmes</b> disponibiliza a edição CRUD dos filmes,
+				através dos verbos HTTP GET, POST, DELETE, PUT, PATCH. O verbo GET
+				irá retornar apenas um registro se informado o <b>id</b> do filme
+				(ex.: "/filmes/1f2d7e78-1efc-4176-bb63-d90a73419607"). O ano,
+				título, descrição dos estúdios e produtores do filme são dados
+				obrigatórios. Já o dado vencedor é opcional.
+			</p>
+			<pre>
+			Exemplo de corpo da primitiva no verbo POST:
+ 			{
+        		"year": 1980,
+        		"title": "Can't Stop the Music",
+        		"studios": "Associated Film Distribution",
+        		"producers": "Allan Carr",
+        		"winner": true
+    			}
+			</pre>
+
+			<hr class="col-3 col-md-2 mb-5">
+
+			<h4 id="vencedores">Listagem de vencedores</h4>
+			<p>
+				Com a aplicação iniciada é possível realizar uma consulta REST via
+				GET, utilizando a diretiva <b>vencedores</b>. Assim a partir, por
+				exemplo, do acesso: <b>http://localhost:8080/vencedores</b>, o
+				sistema terá como saída a listagem dos vencedores do prêmio com o
+				menor e maior intervalo entre as premiações.
+			</p>
+			<hr class="col-3 col-md-2 mb-5">
+
+			<h4 id="organizacao">Organização interna do projeto</h4>
+			<p>A estrutura do projeto está organizado conforme os seguintes
+				pacotes e pastas:</p>
+			<ul>
+				<li><b>com.premio.cinema</b>: Pacote que contêm a classe
+					principal do projeto;</li>
+				<li><b>com.premio.cinema.carga.dados</b>: Pacote que contêm a
+					classe que realiza a importação do arquivo CSV;</li>
+				<li><b>com.premio.cinema.carga.controller</b>: Pacote que
+					contêm as classes responsáveis por responder as requisições seja
+					diretamente via navegador ou ferramenta de teste para consultas
+					REST;</li>
+				<li><b>com.premio.cinema.carga.error</b>: Pacote que contêm a
+					classe responsável por tratar os erros de requisição via navegador
+					ou das consultas REST;</li>
+				<li><b>com.premio.cinema.carga.exception</b>: Pacote que contêm
+					as classes responsáveis por tratar os erros da requisição das
+					consultas REST;</li>
+				<li><b>com.premio.cinema.modelo</b>: Pacote que contêm a classe
+					responsável que representa a tabela filme no banco H2, com base na
+					estrutura do arquivo CSV importado;</li>
+				<li><b>com.premio.cinema.modelo.interno</b>: Pacote que contêm
+					as classes responsáveis por representar o modelo de resultado da
+					consulta dos vencedores do prêmio Framboesa de Ouro, com base no
+					menor e maior intervalo entre uma e outra premiação;</li>
+				<li><b>com.premio.cinema.repositorio</b>: Pacote que contêm a
+					classe responsável for realizar as consultas padrão CRUD no banco
+					de dados, além de consultas específicas;</li>
+				<li><b>com.premio.cinema.util</b>: Pacote que contêm a classe
+					responsável por montar toda a estrutura para resposta a consulta de
+					vencedores;</li>
+			</ul>
+			<p>
+				Além disso na pasta <b>resources</b>, se encontram os arquivos de
+				configuração da aplicação, de log e arquivos HTML (css, js etc) em
+				geral. O projeto também têm um pacote com um conjunto de classes
+				para realizar testes automatizados também denomiado <b>com.premio.cinema</b>.
+			</p>
+
+			<hr class="col-3 col-md-2 mb-5">
+
+			<h4 id="tecnologias">Tecnologias Utilizadas</h4>
+			<p>
+				Este exemplo foi desenvolvido utilizando as seguintes tecnologias e
+				dependências listadas no arquivo <b>pom.xml</b> do projeto:
+			</p>
+			<ul>
+				<li>Banco de dados H2 - Com armazenamento em memória não
+					ficando disponíveis os dados após o fechamento da aplicação;</li>
+				<li>Bootstrap - Biblioteca CSS;</li>
+				<li>Java versão 17;</li>
+				<li>Open CSV - Biblioteca para manipulação de CSV;</li>
+				<li>Plug-in RESTer para o Firefox, para teste das requisições
+					via REST;</li>
+				<li>Spring Boot;</li>
+				<li>Spring Tool Suite 4.13.0.</li>
+			</ul>
+			<p>O sistema foi desenvolvido utilizando a IDE Eclipse versão
+				2021-12.</p>
+
+			<hr class="col-3 col-md-2 mb-5">
+
+			<h4 id="testes">Testes</h4>
+			<p>
+				O sistema possui uma classe de testes chamada <b>FramboesaDeOuroApplicationTests</b>,
+				que contêm a simulação das operações básicas de CRUD via REST. Para
+				rodas esses testes, pode-se executar a classe menciona via uma IDE
+				como, por exemplo, o Eclipse na opção de menu <b>Run -> Run As -> JUnit Test</b>. Ou via terminal (shell) do seu sistema
+				operacional, na pasta do projeto que contêm o arquivo <b>mvnw.cmd</b> e
+				digite os seguintes comandos:
+			<ul>
+				<li>mvn test -Dtest=FramboesaDeOuroApplicationTests</li>
+			</ul>
+		</main>
+		<footer class="pt-5 my-5 text-muted border-top">
+			Criado por Alexandre &middot; 2022 -
+			<script>
+				document.write(new Date().getFullYear())
+			</script>
+			- <a href="/" title="Página inicial">Voltar</a> - <a href="#indice"
+				title="Página inicial">Topo</a>
+		</footer>
+	</div>
+	<script type="text/javascript"
+		th:src="@{webjars/bootstrap/5.1.3/js/bootstrap.min.js}"></script>
+</body>
+
+</html>
