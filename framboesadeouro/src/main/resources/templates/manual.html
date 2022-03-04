@@ -46,15 +46,15 @@
 				dados para consulta estarão disponíveis.</p>
 			<p>Crie a seguinte variável de ambiente conforme descrito a
 				seguir:</p>
-			<p>
-				<b>ARQUIVO_CSV</b>: Essa variável de ambiente "ARQUIVO_CSV" indica o
-				diretório e o nome da fonte de dados em formato ".CSV", arquivo esse
-				que será importada pelo sistema. O diretório deve ser informada
-				junto com o nome do arquivo, como, por exemplo, no caso do Windows
-				seria: "C:/csv/movielist.csv". Caso essa variável de ambiente não
-				seja informada, o sistema irá incializar sem realizar a importação
-				de dados.
-			</p>
+			<ul>
+				<li><b>ARQUIVO_CSV</b>: Essa variável de ambiente "ARQUIVO_CSV"
+					indica o diretório e o nome da fonte de dados em formato ".CSV",
+					arquivo esse que será importada pelo sistema. O diretório deve ser
+					informada junto com o nome do arquivo, como, por exemplo, no caso
+					do Windows seria: "C:/csv/movielist.csv". Caso essa variável de
+					ambiente não seja informada, o sistema irá incializar sem realizar
+					a importação de dados.</li>
+			</ul>
 
 			<hr class="col-3 col-md-2 mb-5">
 
@@ -102,15 +102,17 @@
 			<p>
 				Caso você execute a aplicação via uma IDE como, por exemplo, o
 				Eclipse. Procure a classe <b>FramboesaDeOuroApplication</b> que está
-				no pacote <b>com.premio.cinema</b>, e App ou Java Application. Via o
-				menu na IDE <b>Run -> Run As -> Java Application</b> ou <b>Spring
+				no pacote <b>com.premio.cinema</b>. E via o
+				menu você têm as opções de execução <b>Run -> Run As -> Java Application</b> ou <b>Spring
 					Boot App</b>.
 			</p>
 
-			<p>Você também pode tentar compilar a aplicação via Maven. Para
-				tanto acesse via terminal (shell) do seu sistema operacional a pasta
-				do projeto que contêm o arquivo <b>mvnw.cmd</b> e digite os seguintes
-				comandos:</p>
+			<p>
+				Você também pode tentar compilar a aplicação via Maven. Para tanto
+				acesse via terminal (shell) do seu sistema operacional a pasta do
+				projeto que contêm o arquivo <b>mvnw.cmd</b> e digite os seguintes
+				comandos:
+			</p>
 			<ul>
 				<li>mvn clean package spring-boot:repackage</li>
 				<li>java -jar target/framboesadeouro-0.0.1-SNAPSHOT.jar</li>
@@ -129,7 +131,7 @@
 					-version</b> e depois <b>mvn -version</b>. Nas saídas que se
 				apresentarem deve constar a versão 17 do Java. Caso haja diferença,
 				verifique se a variável de ambiente do seu sistema operacional como,
-				por exemplo, JAVA_HOME, ou outra similar está apontado para o
+				por exemplo, <b>JAVA_HOME</b>, ou outra similar está apontado para o
 				diretório de instalação da versão 17 do Java.
 			</p>
 
@@ -204,7 +206,8 @@
 				Além disso na pasta <b>resources</b>, se encontram os arquivos de
 				configuração da aplicação, de log e arquivos HTML (css, js etc) em
 				geral. O projeto também têm um pacote com um conjunto de classes
-				para realizar testes automatizados também denomiado <b>com.premio.cinema</b>.
+				para realizar testes automatizados também denomiado <b>com.premio.cinema</b>, que contêm a classe
+				<b>FramboesaDeOuroApplicationTests</b>.
 			</p>
 
 			<hr class="col-3 col-md-2 mb-5">
@@ -235,9 +238,10 @@
 				O sistema possui uma classe de testes chamada <b>FramboesaDeOuroApplicationTests</b>,
 				que contêm a simulação das operações básicas de CRUD via REST. Para
 				rodas esses testes, pode-se executar a classe menciona via uma IDE
-				como, por exemplo, o Eclipse na opção de menu <b>Run -> Run As -> JUnit Test</b>. Ou via terminal (shell) do seu sistema
-				operacional, na pasta do projeto que contêm o arquivo <b>mvnw.cmd</b> e
-				digite os seguintes comandos:
+				como, por exemplo, o Eclipse na opção de menu <b>Run -> Run As
+					-> JUnit Test</b>. Ou via terminal (shell) do seu sistema operacional,
+				na pasta do projeto que contêm o arquivo <b>mvnw.cmd</b> e digite os
+				seguintes comandos:
 			<ul>
 				<li>mvn test -Dtest=FramboesaDeOuroApplicationTests</li>
 			</ul>
