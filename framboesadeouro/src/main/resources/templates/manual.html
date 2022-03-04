@@ -102,8 +102,8 @@
 			<p>
 				Caso você execute a aplicação via uma IDE como, por exemplo, o
 				Eclipse. Procure a classe <b>FramboesaDeOuroApplication</b> que está
-				no pacote <b>com.premio.cinema</b>. E via o
-				menu você têm as opções de execução <b>Run -> Run As -> Java Application</b> ou <b>Spring
+				no pacote <b>com.premio.cinema</b>. E via o menu você têm as opções
+				de execução <b>Run -> Run As -> Java Application</b> ou <b>Spring
 					Boot App</b>.
 			</p>
 
@@ -141,14 +141,16 @@
 			<h4 id="listagem">Listagem e operações de filmes</h4>
 			<p>
 				A primitiva <b>filmes</b> disponibiliza a edição CRUD dos filmes,
-				através dos verbos HTTP GET, POST, DELETE, PUT, PATCH. O verbo GET
+				através dos verbos HTTP GET, POST, DELETE, PUT e PATCH. O verbo GET
 				irá retornar apenas um registro se informado o <b>id</b> do filme
-				(ex.: "/filmes/1f2d7e78-1efc-4176-bb63-d90a73419607"). O ano,
-				título, descrição dos estúdios e produtores do filme são dados
-				obrigatórios. Já o dado vencedor é opcional.
+				(ex.: "/filmes/1f2d7e78-1efc-4176-bb63-d90a73419607"). Já para
+				acessar todos os filmes com o sistema no ar digite o endereço, por
+				exemplo: <b>http://localhost:8080/filmes</b>. O ano, título,
+				descrição dos estúdios e produtores do filme são dados obrigatórios.
+				Já o dado vencedor é opcional. Exemplo de corpo da primitiva no
+				verbo POST:
 			</p>
-			<pre>
-			Exemplo de corpo da primitiva no verbo POST:
+			<pre>			
  			{
         		"year": 1980,
         		"title": "Can't Stop the Music",
@@ -206,8 +208,8 @@
 				Além disso na pasta <b>resources</b>, se encontram os arquivos de
 				configuração da aplicação, de log e arquivos HTML (css, js etc) em
 				geral. O projeto também têm um pacote com um conjunto de classes
-				para realizar testes automatizados também denomiado <b>com.premio.cinema</b>, que contêm a classe
-				<b>FramboesaDeOuroApplicationTests</b>.
+				para realizar testes automatizados também denomiado <b>com.premio.cinema</b>,
+				que contêm a classe <b>FramboesaDeOuroApplicationTests</b>.
 			</p>
 
 			<hr class="col-3 col-md-2 mb-5">
