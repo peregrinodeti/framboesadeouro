@@ -64,6 +64,19 @@ O primeiro comando monta a aplicação, e o segundo inicia a mesma. Ocorrendo tu
 
 Observação caso ocorra algum problema na compilação do tipo **Fatal error compiling: error: invalid target release: 17**, verifique se a versão instalada do Java é a mesma da versão utilizada pelo Maven para compilar o projeto. Para tanto digite os comandos na shell **java -version** e depois **mvn -version**. Nas saídas que se apresentarem deve constar a versão 17 do Java. Caso haja diferença, verifique se a variável de ambiente do seu sistema operacional como, por exemplo, **JAVA_HOME**, ou outra similar está apontado para o diretório de instalação da versão 17 do Java. 
 
+## Interface banco de dados H2
+
+Uma vez que a aplicação está iniciada é possível também via navegador ter acesso a interface do banco de dados H2. Para tanto, por exemplo, acesse pelo navegador o endereço: **`http://localhost:8080/h2`**. Na tela que se abre existem algumas informações para preencher, elas a princípio já vêm pré-preenchidas com base nas informações da aplicação constantes no arquivo **application.properties**. Segue um exemplo das informações que podem aparecer nesse tela:
+
+- **Saved Settings**: Opção selecionada padrão é Generic H2 (Embedded);
+- **Setting Name**: Opção selecionada padrão é Generic H2 (Embedded);
+- **Driver Class**: O valor ali é: org.h2.Driver;
+- **JDBC URL**: O valor ali pode ser, por exemplo: jdbc:h2:mem:cinema. Sendo que a palavra cinema é o nome do banco de dados em memória, podendo ser qualquer outro nome para a base de dados;
+- **User Name**: Nome do usuário de acesso, geralmente é a palavra sa;
+- **Password**: O valor deste campo geralmente é vazio.
+
+Com as informações preenchidas é possível testar a comunicação com o banco via a opção **Test Connection**. Para verificar se está tudo configurado corretamente ou ajustar em caso de erro. Estando tudo correto, basta acessar a interface do banco de dados via opção **Connect**. 
+
 ## Listagem e operações de filmes
 
 A primitiva **filmes** disponibiliza a edição CRUD dos filmes, através dos verbos HTTP GET, POST, DELETE, PUT e PATCH. O verbo GET irá retornar apenas um registro se informado o **id** do filme (ex.: "/filmes/1f2d7e78-1efc-4176-bb63-d90a73419607"). Já para acessar todos os filmes com o sistema no ar digite o endereço, por exemplo: **`http://localhost:8080/filmes`**. O ano, título, descrição dos estúdios e produtores do filme são dados obrigatórios. Já o dado vencedor é opcional. Exemplo de corpo da primitiva no verbo POST: 
