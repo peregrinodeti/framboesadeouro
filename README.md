@@ -71,7 +71,7 @@ Uma vez que a aplicação está iniciada é possível também via navegador ter 
 - **Saved Settings**: Opção selecionada padrão é Generic H2 (Embedded);
 - **Setting Name**: Opção selecionada padrão é Generic H2 (Embedded);
 - **Driver Class**: O valor ali é: org.h2.Driver;
-- **JDBC URL**: O valor ali pode ser, por exemplo: jdbc:h2:mem:cinema. Sendo que a palavra cinema é o nome do banco de dados em memória, podendo ser qualquer outro nome para a base de dados;
+- **JDBC URL**: O valor ali pode ser, por exemplo: **jdbc:h2:mem:cinema**. Sendo que a palavra **cinema** é o nome do banco de dados em memória, podendo ser qualquer outro nome para a base de dados;
 - **User Name**: Nome do usuário de acesso, geralmente é a palavra sa;
 - **Password**: O valor deste campo geralmente é vazio.
 
