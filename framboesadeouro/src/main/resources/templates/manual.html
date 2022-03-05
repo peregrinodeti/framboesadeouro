@@ -28,6 +28,7 @@
 				<li><a href="#formato">Formato do arquivo CSV para
 						Importação</a>;</li>
 				<li><a href="#iniciando">Iniciando a aplicação</a>;</li>
+				<li><a href="#interface">Interface banco de dados H2;</a>;</li>
 				<li><a href="#listagem">Listagem e operações de filmes</a>;</li>
 				<li><a href="#vencedores">Listagem de vencedores</a>;</li>
 				<li><a href="#organizacao">Organização interna do projeto</a>;</li>
@@ -137,6 +138,39 @@
 
 			<hr class="col-3 col-md-2 mb-5">
 
+			<h4 id="interface">Interface banco de dados H2</h4>
+			<p>
+				Uma vez que a aplicação está iniciada é possível também via
+				navegador ter acesso a interface do banco de dados H2. Para tanto,
+				por exemplo, acesse pelo navegador o endereço: <b>http://localhost:8080/h2</b>.
+				Na tela que se abre existem algumas informações para preencher, elas
+				a princípio já vêm pré-preenchidas com base nas informações da
+				aplicação constantes no arquivo <b>application.properties</b>. Segue
+				um exemplo das informações que podem aparecer nesse tela:
+			</p>
+			<ul>
+				<li><b>Saved Settings</b>: Opção selecionada padrão é Generic
+					H2 (Embedded);</li>
+				<li><b>Setting Name</b>: Opção selecionada padrão é Generic H2
+					(Embedded);</li>
+				<li><b>Driver Class</b>: O valor ali é: org.h2.Driver;</li>
+				<li><b>JDBC URL</b>: O valor ali pode ser, por exemplo: <b>jdbc:h2:mem:cinema</b>.
+					Sendo que a palavra <b>cinema</b> é o nome do banco de dados em
+					memória, podendo ser qualquer outro nome para a base de dados;</li>
+				<li><b>User Name</b>: Nome do usuário de acesso, geralmente é a
+					palavra <b>sa</b>;</li>
+				<li><b>Password</b>: O valor deste campo geralmente é vazio.</li>
+			</ul>
+			<p>
+				Com as informações preenchidas é possível testar a comunicação com o
+				banco via a opção <b>Test Connection</b>. Para verificar se está
+				tudo configurado corretamente ou ajustar em caso de erro. Estando
+				tudo correto, basta acessar a interface do banco de dados via opção
+				<b>Connect</b>. 
+			</p>
+
+
+			<hr class="col-3 col-md-2 mb-5">
 
 			<h4 id="listagem">Listagem e operações de filmes</h4>
 			<p>
