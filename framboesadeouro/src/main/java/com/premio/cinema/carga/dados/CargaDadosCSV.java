@@ -18,6 +18,7 @@ import com.opencsv.CSVReaderBuilder;
 import com.opencsv.bean.ColumnPositionMappingStrategy;
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
+import com.opencsv.bean.CsvToBeanFilter;
 import com.opencsv.enums.CSVReaderNullFieldIndicator;
 import com.premio.cinema.modelo.Filme;
 import com.premio.cinema.repositorio.FilmeRepository;
@@ -62,7 +63,19 @@ public class CargaDadosCSV {
 				strategy.setType(Filme.class);
 				strategy.setColumnMapping(new String[] { "year", "title", "studios", "producers", "winner" });
 
-				csvToBean = new CsvToBeanBuilder<Filme>(reader).withMappingStrategy(strategy).build();
+				csvToBean = new CsvToBeanBuilder<Filme>(reader).withMappingStrategy(strategy)
+						.withFilter(new CsvToBeanFilter() {
+							// Ignorando linhas em branco do arquivo
+							@Override
+							public boolean allowLine(String[] strings) {
+								for (String one : strings) {
+									if (one != null && one.length() > 0) {
+										return true;
+									}
+								}
+								return false;
+							}
+						}).build();
 
 				Iterator<Filme> filmeIterator = csvToBean.iterator();
 				while (filmeIterator.hasNext()) {

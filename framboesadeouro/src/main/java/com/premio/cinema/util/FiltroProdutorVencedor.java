@@ -29,48 +29,56 @@ public class FiltroProdutorVencedor {
 		}
 		return listaNomes;
 	}
-	
-	public ProdutorVencedorMinMax montarListaProdutorVencedorMinMax(List<Filme> filmes) {
+
+	public ProdutorVencedorMinMax montarListaProdutoresVencedoresMinMax(List<Filme> filmes) {
 		List<ProdutorVencedor> listaProdutorVencedor;
 		List<ProdutorVencedor> listaProdutorVencedorMin;
 		List<ProdutorVencedor> listaProdutorVencedorMax;
-		
+
 		ProdutorVencedor produtorVencedorMin;
 		ProdutorVencedor produtorVencedorMax;
 		ProdutorVencedorMinMax produtorVencedorMinMax = new ProdutorVencedorMinMax();
-		
+
 		listaProdutorVencedor = this.montarListaProdutoresVencedores(filmes);
-		
-		produtorVencedorMin = listaProdutorVencedor.stream().min(Comparator.comparing(ProdutorVencedor::getInterval)).orElse(null);
-		listaProdutorVencedorMin = listaProdutorVencedor.stream().filter(produtorVencedor -> produtorVencedor.getInterval() == produtorVencedorMin.getInterval()).collect(Collectors.toList());
+
+		// buscando o menor intervalo
+		produtorVencedorMin = listaProdutorVencedor.stream().min(Comparator.comparing(ProdutorVencedor::getInterval))
+				.orElse(null);
+		listaProdutorVencedorMin = listaProdutorVencedor.stream()
+				.filter(produtorVencedor -> produtorVencedor.getInterval() == produtorVencedorMin.getInterval())
+				.collect(Collectors.toList());
 		listaProdutorVencedorMin.sort(Comparator.comparing(ProdutorVencedor::getProducer));
-		
-		produtorVencedorMax = listaProdutorVencedor.stream().max(Comparator.comparing(ProdutorVencedor::getInterval)).orElse(null);
-		listaProdutorVencedorMax = listaProdutorVencedor.stream().filter(produtorVencedor -> produtorVencedor.getInterval() == produtorVencedorMax.getInterval()).collect(Collectors.toList());
+
+		// buscando a maior intervalo
+		produtorVencedorMax = listaProdutorVencedor.stream().max(Comparator.comparing(ProdutorVencedor::getInterval))
+				.orElse(null);
+		listaProdutorVencedorMax = listaProdutorVencedor.stream()
+				.filter(produtorVencedor -> produtorVencedor.getInterval() == produtorVencedorMax.getInterval())
+				.collect(Collectors.toList());
 		listaProdutorVencedorMax.sort(Comparator.comparing(ProdutorVencedor::getProducer));
-		
+
 		produtorVencedorMinMax.setMin(listaProdutorVencedorMin);
 		produtorVencedorMinMax.setMax(listaProdutorVencedorMax);
-		
+
 		return produtorVencedorMinMax;
 	}
-	
+
 	private List<ProdutorVencedor> montarListaProdutoresVencedores(List<Filme> filmes) {
 		List<String> listaNomesProdutores;
 		Set<String> conjuntoNomesProdutores;
 		List<Filme> buscaMinMax;
 		List<ProdutorVencedor> produtores = new ArrayList<ProdutorVencedor>();
 		Iterator<String> conjuntoNomesProdutoresIterator;
-		
+
 		Filme filmeMin;
 		Filme filmeMax;
 		ProdutorVencedor produtorVencedor;
-		
+
 		long conta = 0;
-		
+
 		listaNomesProdutores = this.extrairListaNomesProdutores(filmes);
 		conjuntoNomesProdutores = this.organizarListaNomesProdutores(listaNomesProdutores);
-		
+
 		conjuntoNomesProdutoresIterator = conjuntoNomesProdutores.iterator();
 
 		while (conjuntoNomesProdutoresIterator.hasNext()) {
@@ -83,18 +91,21 @@ public class FiltroProdutorVencedor {
 						.collect(Collectors.toList());
 
 				buscaMinMax.sort(Comparator.comparing(Filme::getYear));
-				filmeMin = buscaMinMax.get(0);
-				filmeMax = buscaMinMax.get(buscaMinMax.size() - 1);	
-				
-				produtorVencedor = new ProdutorVencedor();
-				produtorVencedor.setProducer(nome);
-				produtorVencedor.setPreviousWin(filmeMin.getYear());
-				produtorVencedor.setFollowingWin(filmeMax.getYear());
-				produtorVencedor.setInterval(filmeMax.getYear() - filmeMin.getYear());		
-				produtores.add(produtorVencedor);
+
+				for (int i = 0; i < buscaMinMax.size() - 1; i++) {
+					filmeMin = buscaMinMax.get(i);
+					filmeMax = buscaMinMax.get(i + 1);
+
+					produtorVencedor = new ProdutorVencedor();
+					produtorVencedor.setProducer(nome);
+					produtorVencedor.setPreviousWin(filmeMin.getYear());
+					produtorVencedor.setFollowingWin(filmeMax.getYear());
+					produtorVencedor.setInterval(filmeMax.getYear() - filmeMin.getYear());
+					produtores.add(produtorVencedor);
+				}
 			}
 		}
-		
+
 		return produtores;
 	}
 

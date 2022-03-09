@@ -24,10 +24,10 @@ public class ProdutorVencedorController {
 	ResponseEntity<ProdutorVencedorMinMax> getFilmes() {
 		FiltroProdutorVencedor filtroProdutorVencedor = new FiltroProdutorVencedor();
 
-		filtroProdutorVencedor.montarListaProdutorVencedorMinMax(this.filmeRepository.buscarFilmesVencedores());
+		filtroProdutorVencedor.montarListaProdutoresVencedoresMinMax(this.filmeRepository.buscarFilmesVencedores());
 
 		return new ResponseEntity<>(
-				filtroProdutorVencedor.montarListaProdutorVencedorMinMax(this.filmeRepository.buscarFilmesVencedores()),
+				filtroProdutorVencedor.montarListaProdutoresVencedoresMinMax(this.filmeRepository.buscarFilmesVencedores()),
 				HttpStatus.OK);
 	}
 
